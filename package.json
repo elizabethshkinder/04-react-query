@@ -11,11 +11,10 @@
   },
   "dependencies": {
     "axios": "^1.13.2",
-    "hot": "^0.0.7",
     "react": "^19.2.3",
     "react-dom": "^19.2.0",
     "react-hot-toast": "^2.6.0",
-    "toast": "^0.5.4"
+    "react-paginate": "^8.3.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

@@ -3,6 +3,7 @@ import type { Movie } from '../types/movie';
 
 interface MovieSearchResponse {
     results: Movie [];
+    total_pages: number;
 }
 
 const TMDB_TOKEN = import.meta.env.VITE_TMDB_TOKEN;
@@ -15,15 +16,17 @@ const tmdbApi = axios.create({
 });
 
 
-export async function fetchMovies (query: string): Promise<Movie[]> {
+export async function fetchMovies (
+    query: string, 
+    page: number
 
-    if (!query.trim()) return [];
+): Promise<MovieSearchResponse > {
 
     const params = {
         query,
+        page,
         include_adult: false,
         language: 'en-GB',
-        page: 1,
     };
 
     const {data} = await tmdbApi.get<MovieSearchResponse>(
@@ -31,6 +34,5 @@ export async function fetchMovies (query: string): Promise<Movie[]> {
         {params}
     );
 
-    return data.results;            
-
+    return data;          
 };
